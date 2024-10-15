@@ -32,7 +32,7 @@ COPY ${SOURCE_CODE}/ ./
 
 RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -tags netgo -ldflags '-extldflags "-static"' -o /bin/driver ./backend/src/v2/cmd/driver/*.go
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
+FROM registry.redhat.io/ubi8/ubi-minimal@sha256:7583ca0ea52001562bd81a961da3f75222209e6192e4e413ee226cff97dbd48c
 
 WORKDIR /bin
 
@@ -41,5 +41,13 @@ RUN chmod +x /bin/driver
 
 ENTRYPOINT ["/bin/driver"]
 
-LABEL name="ds-pipelines-driver" \
-      summary="DSP Driver"
+LABEL com.redhat.component="odh-ml-pipelines-driver-container" \
+      name="managed-open-data-hub/odh-ml-pipelines-driver-rhel8" \
+      description="odh-ml-pipelines-driver" \
+      summary="odh-ml-pipelines-driver" \
+      maintainer="['managed-open-data-hub@redhat.com']" \
+      io.openshift.expose-services="" \
+      io.k8s.display-name="odh-ml-pipelines-driver" \
+      io.k8s.description="odh-ml-pipelines-driver" \
+      com.redhat.license_terms="https://www.redhat.com/licenses/Red_Hat_Standard_EULA_20191108.pdf"
+
