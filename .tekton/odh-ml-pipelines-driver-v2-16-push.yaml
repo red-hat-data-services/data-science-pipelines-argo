@@ -25,7 +25,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/rhoai-tenant/odh-ml-pipelines-driver-v2-16:{{revision}}
+    value: quay.io/rhoai/odh-ml-pipelines-driver-rhel8:{{target_branch}}
   - name: dockerfile
     value: backend/Dockerfile.konflux.driver
   - name: path-context

@@ -25,7 +25,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/rhoai-tenant/odh-ml-pipelines-persistenceagent-v2-v2-16:{{revision}}
+    value:  quay.io/rhoai/odh-ml-pipelines-persistenceagent-v2-rhel8:{{target_branch}}
   - name: dockerfile
     value: backend/Dockerfile.konflux.persistenceagent
   - name: path-context
@@ -435,6 +435,9 @@ spec:
       params:
       - name: IMAGE
         value: $(tasks.build-image-index.results.IMAGE_URL)
+      - name: ADDITIONAL_TAGS
+        value: 
+          - '{{target_branch}}-{{revision}}'
       runAfter:
       - build-image-index
       taskRef:

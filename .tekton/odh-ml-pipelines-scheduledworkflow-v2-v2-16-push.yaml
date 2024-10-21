@@ -25,11 +25,14 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/rhoai-tenant/odh-ml-pipelines-scheduledworkflow-v2-v2-16:{{revision}}
+    value: quay.io/rhoai/odh-ml-pipelines-scheduledworkflow-v2-rhel8:{{target_branch}}
   - name: dockerfile
     value: backend/Dockerfile.konflux.scheduledworkflow
   - name: path-context
     value: .
+  - name: prefetch-input
+    value: |
+      [{"type": "gomod"}]
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while reducing network traffic.
